@@ -3,7 +3,6 @@ data "template_file" "bootstrap" {
 
   vars {
     HOSTNAME      = "${var.name}"
-    FACTER        = "${var.facter}"
     PUPPET_SERVER = "${var.puppet_server}"
     ENVIRONMENT   = "${var.envrionment}"
   }
