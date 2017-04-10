@@ -28,6 +28,11 @@ resource "aws_instance" "instance" {
   tags {
     Name = "${var.name}"
   }
+
+  provisioner "file" {
+    source      = "hiera.yaml"
+    destination = "/etc/puppetlabs/puppet/hiera.yaml"
+  }
 }
 
 resource "aws_route53_record" "route53_record" {
