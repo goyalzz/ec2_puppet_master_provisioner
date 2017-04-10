@@ -29,14 +29,14 @@ resource "aws_instance" "instance" {
     Name = "${var.name}"
   }
 
-  provisioner "file" {
+  /*provisioner "file" {
     source      = "${file("${path.module}/hiera.yaml")}"
     destination = "/etc/puppetlabs/puppet/hiera.yaml"
 
     connection {
       host = "${self.public_ip}"
     }
-  }
+  }*/
 }
 
 resource "aws_route53_record" "route53_record" {
