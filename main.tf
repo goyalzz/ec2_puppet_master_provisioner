@@ -32,6 +32,10 @@ resource "aws_instance" "instance" {
   provisioner "file" {
     source      = "${file("${path.module}/hiera.yaml")}"
     destination = "/etc/puppetlabs/puppet/hiera.yaml"
+
+    connection {
+      host = "${self.public_ip}"
+    }
   }
 }
 
