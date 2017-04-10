@@ -41,9 +41,14 @@ server=${PUPPET_SERVER}
 report=true
 EOL
 
+mkdir -p /etc/puppetlabs/puppetserver/code/environment/${ENVIRONMENT}
+cd /etc/puppetlabs/puppetserver/code/environment/${ENVIRONMENT}
+git clone ${PUPPET_CODE_REPO}  .
+git checkout ${ENVIRONMENT}
+
 }
 
 check_internet 500
 setHostname
-yum -y install wget
+yum -y install wget git
 puppet_setup

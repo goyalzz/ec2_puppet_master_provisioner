@@ -2,9 +2,10 @@ data "template_file" "bootstrap" {
   template = "${file("${path.module}/${var.bootstrap_script_path}")}"
 
   vars {
-    HOSTNAME      = "${var.name}"
-    PUPPET_SERVER = "${var.puppet_server}"
-    ENVIRONMENT   = "${var.envrionment}"
+    HOSTNAME         = "${var.name}"
+    PUPPET_SERVER    = "${var.puppet_server}"
+    ENVIRONMENT      = "${var.envrionment}"
+    PUPPET_CODE_REPO = "${var.puppet_code_repo}"
   }
 }
 

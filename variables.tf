@@ -56,3 +56,7 @@ variable "puppet_server" {}
 variable "envrionment" {
   default = "production"
 }
+
+variable "puppet_code_repo" {
+  default = "https://github.com/OpsTree/Puppet.git"
+}
