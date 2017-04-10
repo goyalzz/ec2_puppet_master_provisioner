@@ -30,7 +30,7 @@ resource "aws_instance" "instance" {
   }
 
   provisioner "file" {
-    source      = "hiera.yaml"
+    source      = "${file("${path.module}/hiera.yaml")}"
     destination = "/etc/puppetlabs/puppet/hiera.yaml"
   }
 }
