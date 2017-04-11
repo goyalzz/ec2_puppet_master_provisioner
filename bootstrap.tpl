@@ -41,8 +41,8 @@ server=${PUPPET_SERVER}
 report=true
 EOL
 
-mkdir -p /etc/puppetlabs/puppetserver/code/environment/${ENVIRONMENT}
-cd /etc/puppetlabs/puppetserver/code/environment/${ENVIRONMENT}
+mkdir -p /etc/puppetlabs/code/environments/${ENVIRONMENT}
+cd /etc/puppetlabs/code/environments/${ENVIRONMENT}
 git clone ${PUPPET_CODE_REPO}  .
 git checkout ${ENVIRONMENT}
 
@@ -51,7 +51,7 @@ cat >/etc/puppetlabs/puppet/hiera.yaml << EOL
 :backends:
   - yaml
 :yaml:
-  :datadir: "/etc/puppetlabs/puppetserver/code/environments/%{::environment}/hieradata"
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
 :hierarchy:
    - "roles/%{roles}"
    - common
