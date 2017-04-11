@@ -46,6 +46,36 @@ cd /etc/puppetlabs/puppetserver/code/environment/${ENVIRONMENT}
 git clone ${PUPPET_CODE_REPO}  .
 git checkout ${ENVIRONMENT}
 
+cat >/etc/puppetlabs/puppet/hiera.yaml << EOL
+---
+:backends:
+  - yaml
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
+:hierarchy:
+   - "roles/%{roles}"
+   - common
+:logger: puppet
+:merge_behavior: deeper
+EOL
+
+echo "*" >/etc/puppetlabs/puppet/autosign.conf
+
+/opt/puppetlabs/puppet/bin/gem install r10k
+mkdir -p /root/.ssh
+mkdir -p /etc/puppetlabs/r10k
+cat >/root/.ssh/config << EOL
+Host *
+    StrictHostKeyChecking no
+EOL
+
+cat >/etc/puppetlabs/r10k/r10k.yaml << EOL
+:cachedir: '/opt/puppetlabs/r10k/cache'
+:sources:
+  :adtech:
+    remote: '${PUPPET_CODE_REPO}'
+    basedir: '/etc/puppetlabs/code/environments'
+EOL
 }
 
 check_internet 500
