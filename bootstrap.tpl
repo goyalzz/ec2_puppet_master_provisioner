@@ -51,7 +51,7 @@ cat >/etc/puppetlabs/puppet/hiera.yaml << EOL
 :backends:
   - yaml
 :yaml:
-  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
+  :datadir: "/etc/puppetlabs/puppetserver/code/environments/%{::environment}/hieradata"
 :hierarchy:
    - "roles/%{roles}"
    - common
@@ -76,6 +76,7 @@ cat >/etc/puppetlabs/r10k/r10k.yaml << EOL
     remote: '${PUPPET_CODE_REPO}'
     basedir: '/etc/puppetlabs/code/environments'
 EOL
+service puppetserver start
 }
 
 check_internet 500
