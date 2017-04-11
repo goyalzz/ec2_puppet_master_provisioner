@@ -41,6 +41,7 @@ server=${PUPPET_SERVER}
 report=true
 EOL
 
+rm -rf /etc/puppetlabs/code/environments/${ENVIRONMENT}
 mkdir -p /etc/puppetlabs/code/environments/${ENVIRONMENT}
 cd /etc/puppetlabs/code/environments/${ENVIRONMENT}
 git clone ${PUPPET_CODE_REPO}  .
